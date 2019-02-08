@@ -524,7 +524,7 @@ public class TransactionsNet<K, V> extends LaunchApplication
 		 				break;
 		 			 }
 		 		 }
-		 		 logger.info("tot rows "+totrows);
+		 		 //logger.info("tot rows "+totrows);
 		 for(int k=1;k<=totrows;k++)
 		 {
 			 body.removeAll(bodyintvalue);

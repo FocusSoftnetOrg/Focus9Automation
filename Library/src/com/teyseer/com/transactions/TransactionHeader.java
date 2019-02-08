@@ -197,7 +197,7 @@ public void TransactionHeader(ArrayList<String> arrvalues) throws InterruptedExc
 						{
 							
 							int excelindex=excelattridlist.indexOf(actvalue);
-							logger.info(excelindex+ " & excelattridlist "+excelattridlist);
+							//logger.info(excelindex+ " & excelattridlist "+excelattridlist);
 							int labelvalue=labelattribute+1;
 							WebElement control=driver.findElement(By.xpath("//div[@id='id_transactionentry_header_tabdetail_container']/div[@id='id_transactionentry_header"+tabno+"_section']/div[1]/div[@class='row']["+headerrow+"]/div[@class]["+labelvalue+"]"));
 							WebElement controltype;
