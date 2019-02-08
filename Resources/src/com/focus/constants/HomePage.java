@@ -116,7 +116,9 @@ public class HomePage extends LaunchApplication
 	{
 		expmsg="Company Created Successfully";
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CompanyName")));
-		driver.findElement(By.id("CompanyName")).sendKeys(compname1);
+		long millis=System.currentTimeMillis();  
+		java.sql.Date date=new java.sql.Date(millis);  
+		driver.findElement(By.id("CompanyName")).sendKeys(compname1+date);
 		driver.findElement(By.id("SUserPassword")).sendKeys(password1);
 		driver.findElement(By.name("btnOk")).click();
 		/* WAIT UNTILL ALERT POPS UP AND THEN GET THE ALERT TEXT AND ACCEPT THE ALERT */
