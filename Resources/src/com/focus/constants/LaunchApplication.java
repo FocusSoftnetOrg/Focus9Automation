@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.tools.ant.util.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.Point;
@@ -31,18 +32,53 @@ public class LaunchApplication extends BasicExtentReport
 	
 	public static Logger logger=Logger.getLogger("Google");
 	public static WebDriver driver= new ChromeDriver();
-	public static String url = "http://192.168.4.51/focus9";
+   	public static String url = "http://localhost/focus9";
 	public static  WebDriverWait wait = new WebDriverWait(driver, 20);
 	public static WebDriverWait shortwait=new WebDriverWait(driver,5);
+	
+	/*ChromeOptions options = new ChromeOptions();
+
+	options.addArguments("test-type");
+	options.addArguments("start-maximized");
+	options.addArguments("--js-flags=--expose-gc");
+	options.addArguments("--enable-precise-memory-info");
+	options.addArguments("--disable-popup-blocking");
+	options.addArguments("--disable-default-apps");
+	options.addArguments("test-type=browser");    
+	options.addArguments("disable-infobars");
+
+	driver = new ChromeDriver(options);*/
 	
 	/* STATIC METHOD TO LAUNCH CHROME BROWSER AND NAVIGATE TO THE FOCUS9 APPLICATION */
 	
 	 @BeforeSuite
-	 public  static void LaunchApp() throws MalformedURLException
+	 public  static void LaunchApp() throws MalformedURLException, InterruptedException
 	 {
 		//Getting log4j properties to log files 
-		 PropertyConfigurator.configure("E:\\Eclipse Workspace\\TestProject170118\\log\\log4j.properties");
+		 PropertyConfigurator.configure("G:\\Focus9Automation\\Resources\\log\\log4j.properties");
 		 logger.info("Browser Opened");
+		 Set<String> allwindow=driver.getWindowHandles() ;
+		 int i=1;
+		 String lastwindow=driver.getWindowHandle();
+		 for (String eachwindow : allwindow)
+
+		 {
+
+		driver.switchTo().window(eachwindow);
+
+		 logger.info(eachwindow+ " & "+i);
+		 lastwindow=eachwindow;
+		 i++;
+
+		 }
+		 logger.info(i);
+		 
+		 driver.switchTo().window(lastwindow);
+		/* Thread.sleep(3000);
+		 if(driver.findElement(By.id("reset")).isDisplayed())
+		 {
+			 driver.findElement(By.id("cancel")).click();
+		 }*/
 		 driver.navigate().to(url);
 		 logger.info("Application launched");
 		 driver.manage().window().maximize();
